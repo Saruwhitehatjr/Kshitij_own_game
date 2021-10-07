@@ -1,0 +1,97 @@
+var bulding1,bulding2;
+var bulletGroup,platformGroup,enemyGroup;
+function preload()
+{
+bg=loadImage("img/BG.gif","img/BG2.gif")
+building1=loadAnimation("img/building1.png")
+building2=loadAnimation("img/building2.png")
+bullet=loadAnimation("img/bullet.png")
+playerAnimation=loadAnimation("img/M1.png","img/M2.png","img/M3.png","img/M4.png","img/M5.png","img/M6.png")
+enemyAnimation=loadAnimation("img/e7.png","img/e8.png","img/e9.png","img/e10.png","img/e11.png") 
+}
+function setup() {
+  createCanvas(4000,968);
+  bulletGroup= createGroup();
+enemyGroup= createGroup();
+  var countDistanceX = 0;
+  var gap;
+
+  
+
+  /*var xDistance=0
+
+  for(var i=0;i<=10;i++)
+  {
+    building=new Platform(xDistance)
+    xDistance=xDistance+building.w
+  }
+  x=createSprite(400,800,100,600)*/
+  platformGroup= createGroup();
+  for (var i=0;i<40;i++)
+  {
+    frameRate(30);
+     platform = new Platform(countDistanceX);
+     platformGroup.add(platform.spt);//Adding each new platform to platformGroup
+     gap=random([700,100,500,200,700]);//givin randome value to gap
+     countDistanceX = countDistanceX + platform.spt.width + gap; 
+     platform.spt.debug=true;//counting x location of next platform to be build
+
+     if(i%3===0)
+     { obstacle=new Obstacle(countDistanceX)
+      enemyGroup.add(obstacle.spt)
+    }
+ 
+
+  }
+
+  player=new Player();
+}
+
+function draw() {
+
+  background(bg);  
+  translate(  -player.spt.x + width/2 , 0);
+  player.spt.collide(platformGroup)
+  
+  if (keyDown("left"))
+  {
+    player.moveLeft()
+  }
+  if (keyDown("right"))
+  {
+    player.moveRight()
+  }
+  if (keyDown("up"))
+  {
+    player.jump()
+   
+  }
+  player.applyGravity()
+
+ if (keyWentDown("space"))
+  {
+    player.bullet()
+   
+  }
+ // obstacle.jump();
+ // obstacle.applyGravity()
+
+ if(bulletGroup.isTouching(enemyGroup))
+ {
+   enemyGroup.destroyEach()
+ }
+  
+
+  drawSprites();
+
+  
+}
+//background X2
+//add obstacle animation
+//add bullet animation
+//add buliding animation
+//adjust collider bulildings,enemy;
+//add ai to enemy
+//checkpost image
+//player score
+//gamestate
