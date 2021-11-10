@@ -6,7 +6,8 @@ class Player
 		this.spt=createSprite(this.x, this.y, 100,100);
 		this.spt.shapeColor="blue";
 		this.spt.addAnimation("rex",playerAnimation);
-		//this.spt.scale=0.02;
+		this.spt.scale=0.6;
+		this.spt.debug=true;
 	}
 
   applyGravity()

@@ -7,21 +7,24 @@ class Obstacle {
       this.spt.shapeColor="green";
       this.spt.addAnimation("enemy",enemyAnimation);
       //this.spt.addAnimation("obstacle",obstacleAnimation);
-      //this.spt.scale=0.03;
-      this.spt.velocityX=-2;
+      this.spt.scale=0.7;
+      this.spt.velocityX=-4;
       this.spt.debug=true;
       this.spt.collide(platformGroup)
+      this.spt.setCollider("rectangle",-100,0,300,150)
+      this.spt.lifetime=300
+
+      this.obstBullet=createSprite(this.rx, this.ry,10,10)
+      this.obstBullet.addAnimation("bullet",bullet)
+      this.obstBullet.scale=0.2
+      this.obstBullet.velocityX=-5
+      this.obstBullet.lifetime=400
+      enemybulletGroup.add(this.obstBullet);
     }
 
     
-	jump()
-	{ 
-		this.spt.velocityY=-30;
-    }
-	
-    applyGravity()
-    {
-        this.spt.velocityY=this.spt.velocityY+2;
-	}
+
+
+  
 }
   
